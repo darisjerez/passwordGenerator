@@ -1,21 +1,3 @@
-// const lettersAK = ['a', 'b', 'c', 'd', 'f', 'g', 'h', 'i', 'j', "k"];
-// const lettersLT = ['l', 'm', 'n', 'ñ', 'o', 'p', 'q', 'r', 's', 't'];
-// const lettersVZ = ['v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'F'];
-// const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
-// const symbols =  ['@', '#', '$', '%', '&', '*', '!', '~', '+', '?'];
-// const randomCombination = Array.from(String(Math.random()).replace('.', ''));
-// const password = []; 
-
-// function GeneratePassword(hash, length){
-//     for(let i = 0; i < length; i++){
-//         password.push(lettersAK[hash[i]], lettersLT[hash[i]], lettersVZ[hash[i]], numbers[hash[i]], symbols[hash[i]])
-//     }
-//     return String(password.sort(()=>{return 0.5 - Math.random()}).slice(0, length).join(""))
-//} 
-
-//console.log(GeneratePassword(randomCombination, 13))
-
-
 //const bcrypt = require('bcrypt');
 const generatePassword = document.getElementById("generatePassword");
 const storePassword = document.getElementById("storePassword");
@@ -66,8 +48,8 @@ const StorePassword=(password, secretWord, type)=>{
 }
 function GetPassword(secretWord){
     let savedItem = localStorage.getItem(secretWord);
+    if(savedItem == null) return document
     let  item= savedItem.split(",")
-
     if(item[2] == "encrypted"){
         bcrypt.compare(item[1], hash, function(err, result) {
             return result;
