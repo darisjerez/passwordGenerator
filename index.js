@@ -46,7 +46,7 @@ const StorePassword=(password, secretWord, type)=>{
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>`
     }else{
         localStorage.setItem(secretWord, data);
-        aalerts.innerHTML = `<div class="alert alert-success alert-dismissible fade show" role="alert">Password Saved succesfully!
+        alerts.innerHTML = `<div class="alert alert-success alert-dismissible fade show" role="alert">Password Saved succesfully!
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>`
     }
 
@@ -56,7 +56,7 @@ function GetPassword(secretWord){
     
     if(savedItem == null) return alerts.innerHTML = `<div class="alert alert-danger alert-dismissible fade show" role="alert">Unable to find <strong>${secretWord}</strong>. Please try another one.
     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>`;
-    let  item= savedItem.split(",")
+    let item = savedItem.split(",")
     if(item[2] == "encrypted"){
         bcrypt.compare(item[1], hash, function(err, result) {
             return result;

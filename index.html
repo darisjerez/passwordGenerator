@@ -15,21 +15,33 @@
 </head>
 <body>
     <div id="alerts"></div>
+    <div class="jumbotron">
+        <h1 class="display-4">Password Generator!</h1>
+        <br>
+        <div class="form-inline">
+            <input class="form-control w-25" type="text" id="passwordKeyword" placeholder="Insert a keyword..." required>
+            <input class="form-control" type="number" id="passwordLength" min="8" max="16" value="8">
+            <button id="generatePassword" class="btn btn-primary">Generate Password</button>
+            <button id="storePassword" class="btn btn-primary">Store password</button>
+            <button id="encryptPassword" class="btn btn-secondary" disabled>Encrypt password & store it</button>
+        </div>
+        <p>Note: Click on "generate Password" button to get another one.</p>
+        <hr class="my-4">
+       <h3>Retrieve Stored Password</h3>
+       <br>
+       <div class="form-inline">
+         <input type="text" class="form-control" id="keyword" placeholder="Type keyword...">
+         <button id="search" class="btn btn-success">Find!</button>
+        </div>
+        <hr class="my-4">
+        <button class="btn btn-info">Help!</button>
+        <a class="btn btn-info" href="https://github.com/darisjerez">About Me!</a>
+      </div>
     <br>
-    <div class="form-inline">
-        <input class="form-control w-25" type="text" id="passwordKeyword" placeholder="Insert a keyword..." required>
-        <input class="form-control" type="number" id="passwordLength" min="8" max="16" value="8">
-        <button id="generatePassword" class="btn btn-primary">Generate Password</button>
-        <button id="storePassword" class="btn btn-primary">Store password</button>
-        <button id="encryptPassword" class="btn btn-secondary" disabled>Encrypt password & store it</button>
-    </div>
+   
 
-    <p>Click on "generate Password" button to get another one</p>
-    <br>
-    <p>Retrieve stored password</p>
-    <div class="form-inline">
-        <input type="text" class="form-control" id="keyword" placeholder="Type keyword...">
-        <button id="search" class="btn btn-success">Find!</button>
-    </div>
+    
+   
+    
 </body>
 </html>
