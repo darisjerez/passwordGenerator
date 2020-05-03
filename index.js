@@ -6,12 +6,15 @@ const passwordKeyword = document.getElementById("passwordKeyword");
 const keyword = document.getElementById("keyword");
 const search = document.getElementById("search");
 const passwordLength = document.getElementById('passwordLength');
+const alerts = document.getElementById('alerts');
 
 var temp;
 
 generatePassword.addEventListener('click', ()=>{
     let generatedPassword = GeneratePassword(passwordLength.value);
-    alert(`Your password is ${generatedPassword}`);
+     navigator.clipboard.writeText(generatedPassword).then(
+        cliptext => alerts.innerHTML = `<div class="alert alert-success alert-dismissible fade show" role="alert">Password copied in clipboard. <Strong><a href="#" class="alert-link"data-toggle="tooltip" data-placement="top" title=${generatedPassword}>Show</a></stong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>`)
     temp = generatedPassword;
 });
 
@@ -19,7 +22,7 @@ storePassword.addEventListener('click', ()=>{
     StorePassword(temp, passwordKeyword.value, "non-encrypted");  
 });
 search.addEventListener('click', ()=>{
-    GetPassword(keyword.value)
+    GetPassword(keyword.value);
 })
 
 const GeneratePassword=(passwordLength)=>{
@@ -37,18 +40,22 @@ const EncryptPassword=(password)=>{
     });
 }
 const StorePassword=(password, secretWord, type)=>{
-    let data = [password, secretWord, type]
+    let data = [password, secretWord, type];
     if (secretWord == "") {
-        alert("Keyword should not be empty");
+        alerts.innerHTML = `<div class="alert alert-danger alert-dismissible fade show" role="alert">Keyword is empty!
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>`
     }else{
         localStorage.setItem(secretWord, data);
-        alert("Password Stored successfully");
+        aalerts.innerHTML = `<div class="alert alert-success alert-dismissible fade show" role="alert">Password Saved succesfully!
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>`
     }
 
 }
 function GetPassword(secretWord){
     let savedItem = localStorage.getItem(secretWord);
-    if(savedItem == null) return document
+    
+    if(savedItem == null) return alerts.innerHTML = `<div class="alert alert-danger alert-dismissible fade show" role="alert">Unable to find <strong>${secretWord}</strong>. Please try another one.
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>`;
     let  item= savedItem.split(",")
     if(item[2] == "encrypted"){
         bcrypt.compare(item[1], hash, function(err, result) {
@@ -56,7 +63,8 @@ function GetPassword(secretWord){
         });
     }else{
        return navigator.clipboard.writeText(item[0]).then(
-            cliptext => alert("Password has been copied in clipboard")
+            cliptext => alerts.innerHTML = `<div class="alert alert-success alert-dismissible fade show" role="alert">Password copied in clipboard.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>`
          )
     }
     
