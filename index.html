@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./index.js" defer></script>
+</head>
+<body>
+    <div>
+        <input type="text" id="passwordKeyword" placeholder="Insert a keyword" required>
+        <input type="number" id="passwordLength" min="8" max="16" value="8">
+        <button id="generatePassword">Generate Password</button>
+        <button id="storePassword">Store password</button>
+        <button id="encryptPassword">Encrypt password & store it</button>
+    </div>
+    <p>Click on "generate Password" button to get another one</p>
+    <div>
+        <p>Retrieve stored password</p>
+        <input type="text" id="keyword">
+        <button id="search">Find!</button>
+    </div>
+</body>
+</html>
