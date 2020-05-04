@@ -13,7 +13,7 @@ var temp;
 generatePassword.addEventListener('click', ()=>{
     let generatedPassword = GeneratePassword(passwordLength.value);
      navigator.clipboard.writeText(generatedPassword).then(
-        cliptext => alerts.innerHTML = `<div class="alert alert-success alert-dismissible fade show" role="alert">Password copied in clipboard. <Strong><a href="#" class="alert-link"data-toggle="tooltip" data-placement="top" title=${generatedPassword}>Show</a></stong>
+        cliptext => alerts.innerHTML = `<div class="alert alert-success alert-dismissible fade show" role="alert">Password generated successfully. Password copied in clipboard. <strong><a href="#" class="alert-link"data-toggle="tooltip" data-placement="top" title=${generatedPassword}>Show</a></strong> <i class=" fa-check"></i>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>`)
     temp = generatedPassword;
 });
@@ -23,7 +23,7 @@ storePassword.addEventListener('click', ()=>{
 });
 search.addEventListener('click', ()=>{
     GetPassword(keyword.value);
-})
+});
 
 const GeneratePassword=(passwordLength)=>{
     const numbersAndLetters = ['a', 'b', 'c', 'd', 'f', 'g', 'h', 'i', 'j', "k", 'l', 'm', 'n', 'ñ',
@@ -53,7 +53,6 @@ const StorePassword=(password, secretWord, type)=>{
 }
 function GetPassword(secretWord){
     let savedItem = localStorage.getItem(secretWord);
-    
     if(savedItem == null) return alerts.innerHTML = `<div class="alert alert-danger alert-dismissible fade show" role="alert">Unable to find <strong>${secretWord}</strong>. Please try another one.
     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>`;
     let item = savedItem.split(",")
